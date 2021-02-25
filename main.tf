@@ -33,7 +33,7 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-variable "vpc_id"
+variable "vpc_id" {}
 
 data "aws_vpc" "MxP_Vpc1" {
   id = var.vpc_id
