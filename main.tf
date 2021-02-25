@@ -33,8 +33,15 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+variable "vpc_id"
+
+data "aws_vpc" "MxP_Vpc1" {
+  id = var.vpc_id
+}
+
+
 resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.MxP_Vpc1.id
+  vpc_id     = data.aws_vpv.MxP_Vpc1.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
