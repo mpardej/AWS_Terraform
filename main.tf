@@ -35,7 +35,7 @@ resource "aws_vpc" "vpc" {
 # add subnet
 resource "aws_subnet" "main" {
   vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.1.0/8"
 
   tags = {
     Name = "Main"
