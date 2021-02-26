@@ -25,7 +25,7 @@ module "bootstrap" {
 
 # Build the VPC
 resource "aws_vpc" "vpc" {
-  cidr_block           = "10.1.0.0/16"
+  cidr_block           = "10.1.0.0/32"
   instance_tenancy     = "default"
   tags = {
     Name      = "MxP_Vpc1"
@@ -35,7 +35,7 @@ resource "aws_vpc" "vpc" {
 # add subnet
 resource "aws_subnet" "main" {
   vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "10.0.1.0/8"
+  cidr_block = "10.0.1.0/16"
 
   tags = {
     Name = "Main"
