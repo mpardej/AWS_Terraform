@@ -25,7 +25,7 @@ module "bootstrap" {
 
 # Build the VPC
 resource "aws_vpc" "vpc" {
-  cidr_block           = "10.1.0.0/32"
+  cidr_block           = "10.1.0.0/16"
   instance_tenancy     = "default"
   tags = {
     Name      = "MxP_Vpc1"
