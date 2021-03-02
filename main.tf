@@ -7,7 +7,7 @@ terraform {
     region         = "eu-central-1"
     dynamodb_table = "aws-locks-wmakarzak"
     encrypt        = true
-  #}
+  }
 }
 
 # Download any stable version in AWS provider of 2.36.0 or higher in 2.36 train
