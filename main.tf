@@ -1,13 +1,13 @@
 # Require TF version to be same as or greater than 0.12.13
 terraform {
   required_version = ">=0.12.13"
-  backend "s3" {
-    bucket         = "s3bucket-aws-mpardej01"
-    key            = "terraform.tfstate"
-    region         = "eu-central-1"
-    dynamodb_table = "aws-locks"
-    encrypt        = true
-  }
+  #backend "s3" {
+  #  bucket         = "s3bucket-aws-mpardej01"
+  #  key            = "terraform.tfstate"
+  #  region         = "eu-central-1"
+  #  dynamodb_table = "aws-locks"
+  #  encrypt        = true
+  #}
 }
 
 # Download any stable version in AWS provider of 2.36.0 or higher in 2.36 train
@@ -24,20 +24,20 @@ module "bootstrap" {
 }
 
 # Build the VPC
-resource "aws_vpc" "vpc" {
-  cidr_block           = "10.1.0.0/16"
-  instance_tenancy     = "default"
-  tags = {
-    Name      = "MxP_Vpc1"
-    Terraform = "true"
-  }
-}
+#resource "aws_vpc" "vpc" {
+#  cidr_block           = "10.1.0.0/16"
+#  instance_tenancy     = "default"
+#  tags = {
+#    Name      = "MxP_Vpc1"
+#    Terraform = "true"
+#  }
+#}
 # add subnet
-resource "aws_subnet" "main" {
-  vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "10.1.10.0/24"
+#resource "aws_subnet" "main" {
+#  vpc_id     = "${aws_vpc.vpc.id}"
+#  cidr_block = "10.1.10.0/24"
 
-  tags = {
-    Name = "Main"
-  }
-}
+#  tags = {
+#    Name = "Main"
+#  }
+#}
