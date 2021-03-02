@@ -20,7 +20,7 @@ provider "aws" {
 module "bootstrap" {
   source                      = "./modules/bootstrap"
   name_of_s3_bucket           = "s3bucket-aws-wmakarzak01"
-  dynamo_db_table_name        = "aws-locks"
+  dynamo_db_table_name        = "aws-locks-wmakarzak"
 }
 
 # Build the VPC
