@@ -17,11 +17,11 @@ provider "aws" {
 }
 
 # Call the seed_module to build our ADO seed info
-module "bootstrap" {
-  source                      = "./modules/bootstrap"
-  name_of_s3_bucket           = "s3bucket-aws-wmakarzak01"
-  dynamo_db_table_name        = "aws-locks-wmakarzak"
-}
+#module "bootstrap" {
+#  source                      = "./modules/bootstrap"
+#  name_of_s3_bucket           = "s3bucket-aws-wmakarzak01"
+#  dynamo_db_table_name        = "aws-locks-wmakarzak"
+#}
 
 # Build the VPC
 resource "aws_vpc" "vpc" {
