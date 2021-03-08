@@ -34,10 +34,14 @@ resource "aws_vpc" "vpc" {
 }
 # add subnet
 resource "aws_subnet" "main" {
-  vpc_id     = "${aws_vpc.vpc.id}"
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.1.10.0/24"
 
   tags = {
     Name = "Main"
   }
+}
+
+module "db" {
+  source     = "./mssql"
 }
