@@ -13,7 +13,7 @@ terraform {
 # Download any stable version in AWS provider of 2.36.0 or higher in 2.36 train
 provider "aws" {
   region  = "eu-central-1"
-  version = "~> 2.36.0"
+  version = "~> 2.42.0"
 }
 
 # Call the seed_module to build our ADO seed info
@@ -42,6 +42,28 @@ resource "aws_subnet" "main" {
   }
 }
 
-module "db" {
-  source     = "./mssql"
+module "security_group" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "~> 3"
+
+  name        = "sql-sg"
+  description = "Complete SqlServer example security group"
+  vpc_id      = data.aws_vpc.vpc.id
+
+  # ingress
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 1433
+      to_port     = 1433
+      protocol    = "tcp"
+      description = "SqlServer access from within VPC"
+      cidr_blocks = data.aws_vpc.vpc.cidr_block
+    },
+  ]
+
+
 }
+#module "db" {
+#  source     = "./mssql"
+  
+#}

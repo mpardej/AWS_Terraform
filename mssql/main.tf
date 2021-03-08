@@ -19,6 +19,7 @@ resource "aws_db_instance" "sqlserver" {
   backup_window                   = "03:00-06:00"
   enabled_cloudwatch_logs_exports = ["error"]
   option_group_name               = local.option_group_name
+  vpc_security_group_ids          = data.aws_security_groups.securedb_sg.ids
 
   backup_retention_period   = 0
   final_snapshot_identifier = local.name
