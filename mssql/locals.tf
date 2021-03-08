@@ -1,5 +1,6 @@
 
 locals {
+  identifier                = "SQL-01"
   name                      = "complete-mssql"
   region                    = "eu-central-1"
   option_group_name         = "sqlbackuprestore"

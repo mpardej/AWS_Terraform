@@ -1,5 +1,6 @@
 resource "aws_db_instance" "sqlserver" {
 
+  identifier           = local.identifier
   engine               = "sqlserver-ex"
   engine_version       = "14.00.3356.20.v1"
   instance_class       = "db.t2.micro"
@@ -9,7 +10,7 @@ resource "aws_db_instance" "sqlserver" {
   max_allocated_storage = 100
   storage_encrypted     = false
 
-  name     = "SQL01"
+  name     = null
   username = "admin"
   password = "Password1"
   port     = 1433
