@@ -33,12 +33,12 @@ resource "aws_vpc" "vpc" {
   }
 }
 # add subnet
-resource "aws_subnet" "main" {
+resource "aws_subnet" "sql_sbn" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.1.10.0/24"
 
   tags = {
-    Name = "Main"
+    Name = "sql_sbn"
   }
 }
 
