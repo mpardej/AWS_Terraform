@@ -20,7 +20,8 @@ resource "aws_db_instance" "sqlserver" {
   enabled_cloudwatch_logs_exports = ["error"]
   option_group_name               = local.option_group_name
   vpc_security_group_ids          = data.aws_security_groups.securedb_sg.ids
-
+  db_subnet_group_name            = data.aws_subnet_ids.main_sbn.id
+  
   backup_retention_period   = 0
   final_snapshot_identifier = local.name
   deletion_protection       = false
