@@ -12,7 +12,7 @@ data "aws_vpc" "vpc" {
   }
 }
 
-data "aws_subnet" "sql_sbn" {
+data "aws_subnet_ids" "sql_subnet" {
   vpc_id = data.aws_vpc.vpc.id
   filter {
     name   = "tag:Name"
