@@ -36,6 +36,25 @@ module "vpc" {
 }
 
 
+module "sql_service_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name        = "sqldb-service"
+  description = "Complete SqlServer example security group"
+  vpc_id      = data.aws_vpc.test-vpc.id
+
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 1433
+      to_port     = 1433
+      protocol    = "tcp"
+      description = "SqlServer access from within VPC"
+      cidr_blocks = data.aws_vpc.test-vpc.cidr_block
+    },
+  ]
+}
+
+
 # Call the seed_module to build our ADO seed info
 #module "bootstrap" {
 #  source                      = "./modules/bootstrap"

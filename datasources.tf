@@ -1,9 +1,9 @@
-# data "aws_vpc" "vpc" {
-#   filter {
-#     name   = "tag:Name"
-#     values = ["MainVPC_WM"]
-#   }
-# }
+data "aws_vpc" "test-vpc" {
+  filter {
+    name   = "tag:Name"
+    values = ["test-vpc"]
+  }
+}
 
 # data "aws_availability_zones" "available" {
 #   state = "available"
