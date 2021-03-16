@@ -22,6 +22,8 @@ module "db" {
   identifier           = local.identifier
   engine               = "sqlserver-ex"
   engine_version       = "14.00.3356.20.v1"
+  family               = "sqlserver-ex-14.0" # DB parameter group
+  major_engine_version = "14.00"  
   instance_class       = "db.t2.micro"
   character_set_name = local.char_set
 
