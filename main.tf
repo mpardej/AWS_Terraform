@@ -122,7 +122,7 @@ module "sql_service_sg" {
 
 # }
 
-# module "db" {
-#  source     = "./mssql"
+module "db" {
+  source     = "./mssql"
   
-# }
+ }

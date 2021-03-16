@@ -1,4 +1,23 @@
-resource "aws_db_instance" "sqlserver" {
+terraform {
+  required_version = ">=0.12.13"
+  backend "s3" {
+    bucket         = "s3bucket-aws-wmakarzak01"
+    key            = "terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "aws-locks-wmakarzak"
+    encrypt        = true
+  }
+}
+
+provider "aws" {
+  region  = local.region
+}
+
+
+
+module "db" {
+  source  = "terraform-aws-modules/rds/aws"
+  version = "~> 2.30"
 
   identifier           = local.identifier
   engine               = "sqlserver-ex"
@@ -20,8 +39,11 @@ resource "aws_db_instance" "sqlserver" {
   enabled_cloudwatch_logs_exports = ["error"]
   option_group_name               = local.option_group_name
   vpc_security_group_ids          = data.aws_security_groups.securedb_sg.ids
-  db_subnet_group_name            = data.aws_subnet_ids.sql_subnet.ids
-  
+  subnet_ids                      = data.aws_subnet_ids.sql_subnet.ids
+
+  #this needs to be linked explicitly due to a bug in terraform-aws-modules/rds/aws https://github.com/terraform-aws-modules/terraform-aws-rds/issues/242
+  monitoring_role_arn       = "arn:aws:iam::078681072058:role/enhanced_monitoring"
+
   backup_retention_period   = 0
   final_snapshot_identifier = local.name
   deletion_protection       = false
